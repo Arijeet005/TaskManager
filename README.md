@@ -76,3 +76,14 @@ VITE_API_URL=http://localhost:8000
 Backend runs at `http://localhost:8000`.
 
 - Swagger UI: `http://localhost:8000/docs`
+
+## Deploy (Vercel)
+
+This repo includes a `vercel.json` and a Python serverless entry at `api/[...path].py` so the FastAPI backend is deployed at the same origin under `/api/*`.
+
+Important: SQLite is not suitable for Vercel serverless (filesystem is ephemeral). For production, set `DATABASE_URL` to a hosted Postgres database in Vercel Project Settings.
+
+Recommended Vercel env vars:
+
+- `DATABASE_URL`: your hosted Postgres connection string
+- `CORS_ORIGINS`: your Vercel URL (or leave default when frontend + API share the same origin)

@@ -1,5 +1,9 @@
-const API_BASE_URL =
-  (import.meta as any).env?.VITE_API_URL?.toString() || 'http://localhost:8000';
+const envApiUrl = (import.meta as any).env?.VITE_API_URL?.toString();
+const isProd = !!(import.meta as any).env?.PROD;
+
+// In production (e.g. Vercel), default to same-origin so `/api/...` works without extra env config.
+// For local dev, default to FastAPI on port 8000.
+const API_BASE_URL = envApiUrl || (isProd ? '' : 'http://localhost:8000');
 
 export async function apiFetch<T>(
   path: string,
@@ -34,4 +38,3 @@ export async function apiFetch<T>(
 
   return (await res.json()) as T;
 }
-
