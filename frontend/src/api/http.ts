@@ -5,11 +5,17 @@ const isProd = !!(import.meta as any).env?.PROD;
 // For local dev, default to FastAPI on port 8000.
 const API_BASE_URL = envApiUrl || (isProd ? '' : 'http://localhost:8000');
 
+function buildApiUrl(path: string): string {
+  const normalizedBase = API_BASE_URL.replace(/\/+$/, '');
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return `${normalizedBase}${normalizedPath}`;
+}
+
 export async function apiFetch<T>(
   path: string,
   options: RequestInit & { json?: unknown } = {},
 ): Promise<T> {
-  const url = `${API_BASE_URL}${path}`;
+  const url = buildApiUrl(path);
 
   const headers = new Headers(options.headers);
   if (options.json !== undefined) {
