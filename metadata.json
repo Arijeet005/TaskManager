@@ -1,0 +1,5 @@
+{
+  "name": "TaskManager",
+  "description": "A task management application focused on multi-select and bulk actions.",
+  "requestFramePermissions": []
+}

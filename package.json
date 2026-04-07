@@ -1,0 +1,14 @@
+{
+  "name": "task-manager",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "frontend:install": "npm --prefix frontend install",
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:lint": "npm --prefix frontend run lint",
+    "backend:setup": "powershell -ExecutionPolicy Bypass -File backend\\setup.ps1",
+    "backend:dev": "powershell -ExecutionPolicy Bypass -File backend\\dev.ps1",
+    "dev": "npm run frontend:dev"
+  }
+}
